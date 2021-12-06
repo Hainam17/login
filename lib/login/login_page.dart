@@ -5,18 +5,17 @@ import 'package:login_ssk/home/home_page.dart';
 import 'package:login_ssk/login/reset_page.dart';
 import 'package:login_ssk/login/signUp_page.dart';
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
-
+  MyApp({Key? key}) : super(key: key);
+  var MyBoder =OutlineInputBorder(
+      borderRadius: new BorderRadius.only(
+        bottomLeft: const Radius.circular(15),
+        bottomRight: const Radius.circular(15),
+        topLeft: const Radius.circular(15),
+        topRight: const Radius.circular(15),
+      )
+  );
   @override
   Widget build(BuildContext context) {
-    var MyBoder =OutlineInputBorder(
-        borderRadius: new BorderRadius.only(
-          bottomLeft: const Radius.circular(15),
-          bottomRight: const Radius.circular(15),
-          topLeft: const Radius.circular(15),
-          topRight: const Radius.circular(15),
-        )
-    );
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
@@ -29,7 +28,7 @@ class MyApp extends StatelessWidget {
                     end: Alignment(0.8,0.0),
                     colors:<Color>[
                       Color(0xff1778e2),
-                      Color(0xff6bb2e0),
+                      Color(0xffd6e0f5),
                     ]
                 )
               ),
@@ -58,11 +57,11 @@ class MyApp extends StatelessWidget {
                     topRight: Radius.circular(30),
                   )
                   ),
-                child: ListView(
-                  physics:  NeverScrollableScrollPhysics(),
-                  shrinkWrap: true,
-                  padding:const EdgeInsets.fromLTRB(15, 20, 15, 0),
-                  children: [
+                  child: ListView(
+                    physics:  NeverScrollableScrollPhysics(),
+                    shrinkWrap: true,
+                    padding:const EdgeInsets.fromLTRB(15, 20, 15, 0),
+                    children: [
                   Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -96,7 +95,7 @@ class MyApp extends StatelessWidget {
                             ),
                             Padding(
                               padding: const EdgeInsets.fromLTRB(15, 0, 15, 0),
-                              child: TextField(
+                              child: TextFormField(
                                 obscureText: true,
                                 decoration: InputDecoration(
                                   prefixIcon: Icon(Icons.lock),
@@ -153,7 +152,7 @@ class MyApp extends StatelessWidget {
                       ),
                       SizedBox(height: 200),
                       Container(
-                        height: 50,
+                        height: 150,
                         child: Row(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           mainAxisAlignment: MainAxisAlignment.center,
