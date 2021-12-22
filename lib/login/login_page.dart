@@ -1,196 +1,147 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:login_ssk/app_path.dart';
-import 'package:login_ssk/login/reset_page.dart';
-import 'package:login_ssk/login/signUp_page.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:login_ssk/home/home.dart';
 
-import '../home/home.dart';
-class LoginPage extends StatefulWidget {
-  LoginPage({Key? key}) : super(key: key);
+
+class LoginScreen extends StatefulWidget {
+  const LoginScreen({Key? key}) : super(key: key);
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  _LoginScreenState createState() => _LoginScreenState();
 }
 
-class _LoginPageState extends State<LoginPage> {
-  var MyBoder =OutlineInputBorder(
-      borderRadius: new BorderRadius.only(
-        bottomLeft: const Radius.circular(15),
-        bottomRight: const Radius.circular(15),
-        topLeft: const Radius.circular(15),
-        topRight: const Radius.circular(15),
+class _LoginScreenState extends State<LoginScreen> {
+  TextEditingController phoneController = TextEditingController();
+  TextEditingController otpController = TextEditingController();
+
+  FirebaseAuth auth = FirebaseAuth.instance;
+
+  bool otpVisibility = false;
+
+  String verificationID = "";
+  var MyBorder = const OutlineInputBorder(
+      borderRadius: BorderRadius.only(
+        bottomLeft: Radius.circular(15),
+        bottomRight: Radius.circular(15),
+        topLeft: Radius.circular(15),
+        topRight: Radius.circular(15),
       )
   );
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: SafeArea(
-          child: ListView(
-            children:[ Stack(
-              children: [
-                Expanded(
-                  child: Container(
-                    decoration: const BoxDecoration(
-                      gradient: LinearGradient(
-                        begin: Alignment.topLeft,
-                          end: Alignment(0.8,0.0),
-                          colors:<Color>[
-                            Color(0xff1778e2),
-                            Color(0xffd6e0f5),
-                          ]
-                      )
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Container(
-                          child: Image(
-                            image: AssetImage(AppPath.logo_login),
-                            width: 390,
-                          ),
-                        )
-                      ],
-                    ),
+      body: Container(
+        margin: const EdgeInsets.all(10),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            SizedBox(
+              height: 70,
+              child: TextFormField(
+                controller: phoneController,
+                decoration: InputDecoration(
+                  prefixIcon: const Icon(Icons.account_circle),
+                  border: MyBorder,
+                  hintText: 'Số điện thoại',
+                ),
+                maxLines: 10,
+                keyboardType: TextInputType.phone,
+              ),
+            ),const SizedBox(height: 20),
+            Visibility(
+              child: TextField(
+                controller: otpController,
+                decoration: InputDecoration(
+                  prefixIcon: const Icon(Icons.lock),
+                  border: MyBorder,
+                  hintText: 'OTP',
+                  prefix: const Padding(
+                    padding: EdgeInsets.all(4),
+                    child: Text(''),
                   ),
                 ),
-                  Expanded(
-                    child: Container(
-                        width: double.infinity,
-                        margin: const EdgeInsets.only(top: 150),
-                        padding: const EdgeInsets.only(top: 10),
-                        decoration: const BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(30),
-                        topRight: Radius.circular(30),
-                      )
-                      ),
-                      child: ListView(
-                        physics:  NeverScrollableScrollPhysics(),
-                        shrinkWrap: true,
-                        padding:const EdgeInsets.fromLTRB(15, 20, 15, 0),
-                        children: [
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Container(
-                            height: 20,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text('Đăng nhập',
-                                style: TextStyle(
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.w700,
-                                ),
-                                )
-                              ],
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(bottom: 5),
-                            child: Column(
-                              children: <Widget>[
-                                Padding(
-                                  padding:const EdgeInsets.all(15),
-                                  child: TextFormField(
-                                    decoration: InputDecoration(
-                                      prefixIcon:const Icon(Icons.account_circle),
-                                      border: MyBoder,
-                                      hintText: 'Tên đăng nhập hoặc số điện thoại',
-                                    ),
-                                  ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.fromLTRB(15, 0, 15, 0),
-                                  child: TextFormField(
-                                    obscureText: true,
-                                    decoration: InputDecoration(
-                                      prefixIcon: Icon(Icons.lock),
-                                      border: MyBoder,
-                                      hintText: 'Mật khẩu',
-                                    ),
-                                  ),
-                                )
-                              ],
-                            ),
-                          ),
-                          Container(
-                              height: 30,
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.end,
-                                children: [
-                                  TextButton(
-                                      onPressed: (){
-                                        Navigator.push(context, MaterialPageRoute(builder: (context)=>ReSet()));
-                                      },
-                                      child: Text('Quên mật khẩu ?'))
-                                ],
-                              )
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.fromLTRB(15, 20, 15, 0),
-                            child: SizedBox(
-                              width: double.infinity,
-                              height: 50,
-                              child: ElevatedButton(
-                                      onPressed: () {
-                                        Navigator.push(
-                                        context,
-                                        MaterialPageRoute(builder: (context) => HomePage()),
-                                  );
-                                      },
-                                child: Text(
-                                  "Đăng nhập",
-                                  style: TextStyle(
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.w700
-                                  ),
-                                ),
-                                style: ButtonStyle(
-                                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                                        RoundedRectangleBorder(
-                                            borderRadius: BorderRadius.circular(15),
-                                            side:BorderSide(color: Colors.blueAccent)
-                                        )
-                                    )
-                                ),
-                              ),
-                            ),
-                          ),
-                          SizedBox(height: 200),
-                          Container(
-                            height: 150,
-                            child: Row(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text(
-                                  'Chưa có tài khoản?',
-                                  style: TextStyle(color: Colors.black),
-                                ),
-                                TextButton(
-                                    onPressed:(){
-                                      Navigator.push(context, MaterialPageRoute(builder: (context)=>SignUp()));
-                                    },
-                                    child: Text(
-                                      'Đăng kí',
-                                    ))
-                              ],
-                            ),
-                          ),
-                          SizedBox(height: 50)
-                        ],
-                      )
-                    ],
-                  )
-                )
-                )
-              ],
+                maxLength: 6,
+                keyboardType: TextInputType.number,
+              ),
+              visible: otpVisibility,
             ),
-          ]),
+            const SizedBox(
+              height: 10,
+            ),
+            MaterialButton(
+              height: 50,
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(15)),
+              color: Colors.blue,
+              minWidth: double.infinity,
+              onPressed: () {
+                if (otpVisibility) {
+                  verifyOTP();
+                } else {
+                  loginWithPhone();
+                }
+              },
+              child: Text(
+                otpVisibility ? "Verify" : "Login",
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontSize: 20,
+                ),
+              ),
+            ),
+          ],
         ),
+      ),
+    );
+  }
+  void loginWithPhone() async {
+    auth.verifyPhoneNumber(
+      phoneNumber: "+84" + phoneController.text,
+      verificationCompleted: (PhoneAuthCredential credential) async {
+        await auth.signInWithCredential(credential).then((value) {
+          // print("You are logged in successfully");
+        });
+      },
+      verificationFailed: (FirebaseAuthException e) {
+        // print(e.message);
+      },
+      codeSent: (String verificationId, int? resendToken) {
+        otpVisibility = true;
+        verificationID = verificationId;
+        setState(() {});
+      },
+      codeAutoRetrievalTimeout: (String verificationId) {},
+    );
+  }
+
+  void verifyOTP() async {
+    PhoneAuthCredential credential = PhoneAuthProvider.credential(
+        verificationId: verificationID, smsCode: otpController.text);
+
+    await auth.signInWithCredential(credential).then(
+          (value) {
+        // print("You are logged in successfully");
+        Fluttertoast.showToast(
+          // msg: "You are logged in successfully",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.CENTER,
+          timeInSecForIosWeb: 1,
+          backgroundColor: Colors.red,
+          textColor: Colors.white,
+          fontSize: 16.0, msg: '',
+        );
+      },
+    ).whenComplete(
+          () {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const HomePage(),
+          ),
+        );
+      },
     );
   }
 }

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "770011610536",
+    "project_id": "loginssk-1a520",
+    "storage_bucket": "loginssk-1a520.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:770011610536:android:fb845c242cddcfc2fbf19d",
+        "android_client_info": {
+          "package_name": "com.example.login_ssk"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "770011610536-0ed3a27e4s04bu36tnkd5lg0alv8705n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBNDvxYQAwNWOE7bmhmoablTRQeTYEPM74"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "770011610536-0ed3a27e4s04bu36tnkd5lg0alv8705n.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

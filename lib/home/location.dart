@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
-
+import 'package:google_fonts/google_fonts.dart';
 class Location extends StatefulWidget {
   @override
   _LocationState createState() => _LocationState();
@@ -16,8 +16,7 @@ class _LocationState extends State<Location> {
     if (position == LocationPermission.denied ||
         position == LocationPermission.deniedForever) {
     } else {
-      Position currentLoc = await Geolocator.getCurrentPosition(
-          desiredAccuracy: LocationAccuracy.best);
+      Position currentLoc = await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.best);
       // setState(() {
       //   long = currentLoc.longitude.toString();
       //   lat = currentLoc.latitude.toString();
@@ -29,10 +28,11 @@ class _LocationState extends State<Location> {
     List<Placemark> placemarks = await placemarkFromCoordinates(longtitude, latitude);
     Placemark newPlacemark = placemarks.first;
     setState(() {
-      address=newPlacemark.street!
-          +','+newPlacemark.subAdministrativeArea!
-          +','+newPlacemark.administrativeArea!
-          +','+newPlacemark.country!;
+      address=  newPlacemark.name!
+          +', '+newPlacemark.street!
+          +', '+newPlacemark.subAdministrativeArea!
+          +', '+newPlacemark.administrativeArea!
+          +', '+newPlacemark.country!;
     });
   }
   @override
@@ -44,10 +44,12 @@ class _LocationState extends State<Location> {
             Center(
               child: Text(
                 'Location :$address',
-                style: TextStyle(
+                style: GoogleFonts.robotoSlab(
                   color: Colors.black,
                   fontSize: 30,
+                  fontWeight: FontWeight.w600
                 ),
+                  textAlign: TextAlign.center
               ),
             ),
             TextButton(
@@ -56,7 +58,7 @@ class _LocationState extends State<Location> {
                 "Get Location",
                 style: TextStyle(
                   color: Colors.black,
-                  fontSize: 30,
+                  fontSize: 20,
                 ),
               ),
             ),

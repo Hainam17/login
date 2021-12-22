@@ -28,7 +28,7 @@ class _DigitalClockState extends State<DigitalClock> {
         child: Text(
           '$clock',
           style: TextStyle(
-            fontSize: 30
+            fontSize: 30,
           ),
         ),
     );
