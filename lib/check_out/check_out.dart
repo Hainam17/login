@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:login_ssk/check_out/confirm_checkout.dart';
+import 'package:login_ssk/check_out/counting_time.dart';
 import 'package:login_ssk/home/clock.dart';
 import 'package:login_ssk/home/location.dart';
 
@@ -44,16 +45,22 @@ class _CheckOutState extends State<CheckOut> {
                               ]
                           )
                       ),
-                      child: Center(
-                        child: Text(
+                      child: Column(
+                        children:[
+                          const SizedBox(height: 30),
+                          const Text(
                           'Working time \n của bạn là:',
                           style: TextStyle(
-                            fontSize: 30,
+                            fontSize: 25,
                             color: Colors.white
                           ),
-                        ),
+                          textAlign: TextAlign.center,
+                        ),const SizedBox(height: 20),
+                          Counting(),
+                        ]
                       ),
-                  ),const SizedBox(height:30),
+                  ),
+                  const SizedBox(height:30),
                   Location(),
                   const SizedBox(height: 30),
                   ConFirmCheckOut(),
@@ -66,7 +73,7 @@ class _CheckOutState extends State<CheckOut> {
                               borderRadius: BorderRadius.circular(15)),
                           color:Colors.grey,
                           onPressed: (){},
-                          child: Text(
+                          child:const Text(
                               'Lịch sử',
                             style: TextStyle(color: Colors.white),
                           )),
@@ -75,7 +82,7 @@ class _CheckOutState extends State<CheckOut> {
                               borderRadius: BorderRadius.circular(15)),
                           color: Colors.grey,
                           onPressed:(){},
-                          child: Text(
+                          child:const Text(
                             'About',
                             style: TextStyle(color: Colors.white),
                           ))

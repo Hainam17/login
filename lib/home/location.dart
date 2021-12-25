@@ -28,8 +28,7 @@ class _LocationState extends State<Location> {
     List<Placemark> placemarks = await placemarkFromCoordinates(longtitude, latitude);
     Placemark newPlacemark = placemarks.first;
     setState(() {
-      address=  newPlacemark.name!
-          +', '+newPlacemark.street!
+      address=newPlacemark.street!
           +', '+newPlacemark.subAdministrativeArea!
           +', '+newPlacemark.administrativeArea!
           +', '+newPlacemark.country!;

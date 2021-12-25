@@ -32,7 +32,7 @@ class CheckIn extends StatelessWidget {
               // Icon(
               //   Icons.account_circle_rounded
               // ),
-              SizedBox(height: 10),
+              const SizedBox(height: 10),
               Text('CHECK \nIN',
                 style: GoogleFonts.merriweather(
                     fontSize: 45,

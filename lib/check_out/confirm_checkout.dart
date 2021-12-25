@@ -1,6 +1,10 @@
+import 'dart:async';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:login_ssk/check_out/counting_time.dart';
 import 'package:login_ssk/home/clock.dart';
+import 'package:provider/provider.dart';
 
 class ConFirmCheckOut extends StatefulWidget {
   const ConFirmCheckOut ({Key? key}) : super(key: key);
@@ -31,7 +35,7 @@ class _ConFirmCheckOutState extends State<ConFirmCheckOut> {
                   height: 350,
                   child: Column(
                     children: [
-                      Text(
+                      const Text(
                           'Giờ Check Out của bạn là :',
                           style: TextStyle(
                             fontSize: 25,
@@ -43,7 +47,7 @@ class _ConFirmCheckOutState extends State<ConFirmCheckOut> {
                       const SizedBox(height: 20),
                       DigitalClock(),
                       const SizedBox(height: 20),
-                      Text(
+                      const Text(
                           'Tổng thời gian làm việc của bạn là:',
                           style: TextStyle(
                             fontSize: 25,
@@ -52,8 +56,17 @@ class _ConFirmCheckOutState extends State<ConFirmCheckOut> {
                           ),
                             textAlign: TextAlign.center
                         ),
+                      // Container(
+                      //   padding: const EdgeInsets.all(35),
+                      //   color: Colors.blue[200],
+                      //   child: Consumer<CountingState>( //                    <--- Consumer
+                      //     builder: (context, myModel, child) {
+                      //       return Text();
+                      //     },
+                      //   ),
+                      // ),
                       const SizedBox(height: 50),
-                      Text(
+                      const Text(
                         'Bạn chắc chắn chưa ?',
                         style: TextStyle(
                           fontWeight: FontWeight.w600,
@@ -74,7 +87,7 @@ class _ConFirmCheckOutState extends State<ConFirmCheckOut> {
                                 borderRadius: BorderRadius.circular(15)),
                             color:Colors.white,
                             onPressed: (){},
-                            child: Text(
+                            child:const Text(
                               'Yes',
                               style: TextStyle(color: Colors.black),
                             )),
@@ -83,7 +96,7 @@ class _ConFirmCheckOutState extends State<ConFirmCheckOut> {
                                 borderRadius: BorderRadius.circular(15)),
                             color: Colors.white,
                             onPressed:()=> Navigator.pop(context),
-                            child: Text(
+                            child:const Text(
                               'No',
                               style: TextStyle(color: Colors.black),
                             ))
@@ -94,7 +107,7 @@ class _ConFirmCheckOutState extends State<ConFirmCheckOut> {
               )
           ),
           color: Colors.grey,
-          child: Text(
+          child:const Text(
             'CheckOut',
             style: TextStyle(
                 fontSize: 20,

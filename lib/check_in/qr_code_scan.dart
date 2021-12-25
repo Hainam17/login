@@ -59,7 +59,7 @@ class _QRViewExampleState extends State<QRViewExample> {
                               borderRadius: BorderRadius.circular(15)),
                           color: Colors.blue,
                           onPressed: ()=> Navigator.push(context, MaterialPageRoute(builder: (context)=>ConFirmCheckIn())),
-                          child: Text(
+                          child: const Text(
                             'OK',
                             style: TextStyle(
                             ),

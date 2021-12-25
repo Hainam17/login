@@ -21,7 +21,7 @@ class _ConFirmCheckInState extends State<ConFirmCheckIn> {
           height: 250,
           child: Column(
             children: [
-              Text(
+              const Text(
                   'Giờ Check In của bạn là :',
                   style: TextStyle(
                       fontSize: 25,
@@ -33,7 +33,7 @@ class _ConFirmCheckInState extends State<ConFirmCheckIn> {
               const SizedBox(height: 20),
               DigitalClock(),
               const SizedBox(height: 50),
-              Text(
+              const Text(
                 'Bạn chắc chắn chưa ?',
                 style: TextStyle(
                     fontWeight: FontWeight.w600,
@@ -55,7 +55,7 @@ class _ConFirmCheckInState extends State<ConFirmCheckIn> {
                         borderRadius: BorderRadius.circular(15)),
                     color:Colors.white,
                     onPressed: ()=> Navigator.push(context, MaterialPageRoute(builder: (context)=>CheckOut())),
-                    child: Text(
+                    child:const Text(
                       'Yes',
                       style: TextStyle(color: Colors.black),
                     )),
@@ -64,7 +64,7 @@ class _ConFirmCheckInState extends State<ConFirmCheckIn> {
                         borderRadius: BorderRadius.circular(15)),
                     color: Colors.white,
                     onPressed:()=> Navigator.pop(context),
-                    child: Text(
+                    child:const Text(
                       'No',
                       style: TextStyle(color: Colors.black),
                     ))
