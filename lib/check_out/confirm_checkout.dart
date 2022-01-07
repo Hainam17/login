@@ -2,8 +2,8 @@ import 'dart:async';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:login_ssk/check_out/counting_time.dart';
-import 'package:login_ssk/home/clock.dart';
+import 'package:login_ssk/model/clock.dart';
+import 'package:login_ssk/summarize.dart';
 import 'package:provider/provider.dart';
 
 class ConFirmCheckOut extends StatefulWidget {
@@ -45,7 +45,23 @@ class _ConFirmCheckOutState extends State<ConFirmCheckOut> {
                             textAlign: TextAlign.center
                         ),
                       const SizedBox(height: 20),
-                      DigitalClock(),
+                      Container(
+                        child: Consumer<Clock>(
+                          builder: (context, myClock, child) {
+                            return Column(
+                              children: [
+                                Center(
+                                    child: myClock.DiGiTalClock()
+                                ),
+                                Text(myClock.getCounter(),
+                                  style: const TextStyle(
+                                      fontSize: 35
+                                  ),)
+                              ],
+                            );
+                          },
+                        ),
+                      ),
                       const SizedBox(height: 20),
                       const Text(
                           'Tổng thời gian làm việc của bạn là:',
@@ -61,7 +77,7 @@ class _ConFirmCheckOutState extends State<ConFirmCheckOut> {
                       //   color: Colors.blue[200],
                       //   child: Consumer<CountingState>( //                    <--- Consumer
                       //     builder: (context, myModel, child) {
-                      //       return Text();
+                      //       return Text('');
                       //     },
                       //   ),
                       // ),
@@ -86,7 +102,9 @@ class _ConFirmCheckOutState extends State<ConFirmCheckOut> {
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(15)),
                             color:Colors.white,
-                            onPressed: (){},
+                            onPressed: (){
+                              Navigator.push(context, MaterialPageRoute(builder: (context)=>Summarize()));
+                            },
                             child:const Text(
                               'Yes',
                               style: TextStyle(color: Colors.black),

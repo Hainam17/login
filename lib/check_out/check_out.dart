@@ -1,8 +1,11 @@
+
 import 'package:flutter/material.dart';
 import 'package:login_ssk/check_out/confirm_checkout.dart';
-import 'package:login_ssk/check_out/counting_time.dart';
-import 'package:login_ssk/home/clock.dart';
-import 'package:login_ssk/home/location.dart';
+import 'package:login_ssk/history.dart';
+import 'package:login_ssk/model/counting_time.dart';
+import 'package:login_ssk/model/clock.dart';
+import 'package:login_ssk/model/location.dart';
+import 'package:provider/provider.dart';
 
 class CheckOut extends StatefulWidget {
   const CheckOut({Key? key}) : super(key: key);
@@ -28,8 +31,25 @@ class _CheckOutState extends State<CheckOut> {
                     style: TextStyle(
                       fontWeight: FontWeight.w800,
                       fontSize: 35,
-                    ),),const SizedBox(height: 30),
-                  DigitalClock(),
+                    ),),
+                  // const SizedBox(height: 30),
+                  Container(
+                    child: Consumer<Clock>(
+                      builder: (context, myClock, child) {
+                        return Column(
+                          children: [
+                            Center(
+                                child: myClock.DiGiTalClock()
+                            ),
+                            Text(myClock.getCounter(),
+                              style: const TextStyle(
+                                  fontSize: 35
+                              ),)
+                          ],
+                        );
+                      },
+                    ),
+                  ),
                   const SizedBox(height: 30),
                 Container(
                       height: 200,
@@ -72,7 +92,9 @@ class _CheckOutState extends State<CheckOut> {
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(15)),
                           color:Colors.grey,
-                          onPressed: (){},
+                          onPressed: (){
+                            Navigator.push(context, MaterialPageRoute(builder: (context)=> HisToRy()));
+                          },
                           child:const Text(
                               'Lịch sử',
                             style: TextStyle(color: Colors.white),

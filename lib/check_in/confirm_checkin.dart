@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:login_ssk/check_out/check_out.dart';
-import 'package:login_ssk/home/clock.dart';
+import 'package:login_ssk/model/clock.dart';
+import 'package:provider/provider.dart';
 
 class ConFirmCheckIn extends StatefulWidget {
   const ConFirmCheckIn({Key? key}) : super(key: key);
@@ -31,7 +32,23 @@ class _ConFirmCheckInState extends State<ConFirmCheckIn> {
                   textAlign: TextAlign.center
               ),
               const SizedBox(height: 20),
-              DigitalClock(),
+              Container(
+                child: Consumer<Clock>(
+                  builder: (context, myClock, child) {
+                    return Column(
+                      children: [
+                        Center(
+                            child: myClock.DiGiTalClock()
+                        ),
+                        Text(myClock.getCounter(),
+                          style: const TextStyle(
+                              fontSize: 35
+                          ),)
+                      ],
+                    );
+                  },
+                ),
+              ),
               const SizedBox(height: 50),
               const Text(
                 'Bạn chắc chắn chưa ?',

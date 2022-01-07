@@ -1,7 +1,8 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:login_ssk/home/home.dart';
-import '../app_path.dart';
-import 'login_page.dart';
+
 
 class SignUp extends StatefulWidget {
   const SignUp({Key? key}) : super(key: key);
@@ -11,125 +12,136 @@ class SignUp extends StatefulWidget {
 }
 
 class _SignUpState extends State<SignUp> {
+  TextEditingController phoneController = TextEditingController();
+  TextEditingController otpController = TextEditingController();
+
+  FirebaseAuth auth = FirebaseAuth.instance;
+
+  bool otpVisibility = false;
+
+  String verificationID = "";
+  var MyBorder = const OutlineInputBorder(
+      borderRadius: BorderRadius.only(
+        bottomLeft: Radius.circular(15),
+        bottomRight: Radius.circular(15),
+        topLeft: Radius.circular(15),
+        topRight: Radius.circular(15),
+      )
+  );
+
   @override
   Widget build(BuildContext context) {
-    var MyBoder =OutlineInputBorder(
-        borderRadius: new BorderRadius.only(
-          bottomLeft: const Radius.circular(15),
-          bottomRight: const Radius.circular(15),
-          topLeft: const Radius.circular(15),
-          topRight: const Radius.circular(15),
-        )
-    );
     return Scaffold(
-      body: ListView(
-        children:[ Container(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Container(
-                  child: Image(
-                image: AssetImage(AppPath.logo_login),
-                width: 150,
-              )
-              ),const SizedBox(height: 50),
-              Padding(
-                  padding: const EdgeInsets.fromLTRB(15,0,15,0),
-                  child: Column(
-                    children: <Widget>[
-                      Padding(
-                        padding: EdgeInsets.fromLTRB(15,15,15,0),
-                        child: TextField(
-                          decoration: InputDecoration(
-                            border: MyBoder,
-                            labelText: 'Tên đăng nhập',
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.fromLTRB(15,15,15,0),
-                        child: TextField(
-                          decoration: InputDecoration(
-                            border: MyBoder,
-                            labelText: 'Email',
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.fromLTRB(15,15,15,0),
-                        child: TextField(
-                          obscureText: true,
-                          decoration: InputDecoration(
-                            border: MyBoder,
-                            labelText: 'Mật khẩu',
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.fromLTRB(15,15,15,10),
-                        child: TextField(
-                          obscureText: true,
-                          decoration: InputDecoration(
-                            border: MyBoder,
-                            labelText: 'Nhập lại mật khẩu',
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.fromLTRB(15, 0, 15, 0),
-                        child: SizedBox(
-                          width: double.infinity,
-                          height: 50,
-                          child: ElevatedButton(
-                            onPressed: onSignInClick,
-                            child: Text("Đăng kí",
-                              style: TextStyle(),
-                            ),
-                            style: ButtonStyle(
-                              shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                                  RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(15),
-                                    side: BorderSide(color: Colors.blueAccent)
-                                  )
-                              )
-                            ),
-                          ),
-                        ),
-                      ),
-                      Container(
-                        height: 50,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              'Đã có tài khoản?',
-                              style: TextStyle(
-                                  color: Colors.black
-                              ),
-                            ),
-                            TextButton(
-                                onPressed: onLogInClick,
-                                child: Text(
-                                  'Đăng nhập',
-                                ))
-                          ],
-                        ),
-                      )
-                    ],
-                  )
-              )
-            ],
-          ),
+      body: Container(
+        margin: const EdgeInsets.all(10),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            SizedBox(
+              height: 70,
+              child: TextFormField(
+                controller: phoneController,
+                decoration: InputDecoration(
+                  prefixIcon: const Icon(Icons.account_circle),
+                  border: MyBorder,
+                  hintText: 'Số điện thoại',
+                ),
+                maxLines: 10,
+                keyboardType: TextInputType.phone,
+              ),
+            ),const SizedBox(height: 20),
+            Visibility(
+              child: TextField(
+                controller: otpController,
+                decoration: InputDecoration(
+                  prefixIcon: const Icon(Icons.lock),
+                  border: MyBorder,
+                  hintText: 'OTP',
+                  prefix: const Padding(
+                    padding: EdgeInsets.all(4),
+                    child: Text(''),
+                  ),
+                ),
+                maxLength: 6,
+                keyboardType: TextInputType.number,
+              ),
+              visible: otpVisibility,
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            MaterialButton(
+              height: 50,
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(15)),
+              color: Colors.blue,
+              minWidth: double.infinity,
+              onPressed: () {
+                if (otpVisibility) {
+                  verifyOTP();
+                } else {
+                  loginWithPhone();
+                }
+              },
+              child: Text(
+                otpVisibility ? "Verify" : "Login",
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontSize: 20,
+                ),
+              ),
+            ),
+          ],
         ),
-      ]),
+      ),
     );
   }
-  void onLogInClick(){
-    Navigator.push(context,MaterialPageRoute(builder: (context) => LoginScreen())
+  void loginWithPhone() async {
+    auth.verifyPhoneNumber(
+      phoneNumber: "+84" + phoneController.text,
+      verificationCompleted: (PhoneAuthCredential credential) async {
+        await auth.signInWithCredential(credential).then((value) {
+          // print("You are logged in successfully");
+        });
+      },
+      verificationFailed: (FirebaseAuthException e) {
+        // print(e.message);
+      },
+      codeSent: (String verificationId, int? resendToken) {
+        otpVisibility = true;
+        verificationID = verificationId;
+        setState(() {});
+      },
+      codeAutoRetrievalTimeout: (String verificationId) {},
     );
   }
-  void onSignInClick(){
-    Navigator.push(context, MaterialPageRoute(builder: (context)=> HomePage())
+
+  void verifyOTP() async {
+    PhoneAuthCredential credential = PhoneAuthProvider.credential(
+        verificationId: verificationID, smsCode: otpController.text);
+
+    await auth.signInWithCredential(credential).then(
+          (value) {
+        // print("You are logged in successfully");
+        Fluttertoast.showToast(
+          // msg: "You are logged in successfully",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.CENTER,
+          timeInSecForIosWeb: 1,
+          backgroundColor: Colors.red,
+          textColor: Colors.white,
+          fontSize: 16.0, msg: '',
+        );
+      },
+    ).whenComplete(
+          () {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const HomePage(),
+          ),
+        );
+      },
     );
   }
 }

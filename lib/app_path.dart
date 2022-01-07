@@ -4,4 +4,5 @@ class AppPath{
   static const String icon_gg='assets/icons/icon_gg.png';
   static const String office='assets/icons/Office.png';
   static const String logo='assets/icons/logo.png';
+  static const String user_image ='assets/images/user_image.jpg';
 }

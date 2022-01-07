@@ -1,16 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:login_ssk/check_in/check-in.dart';
-import 'package:login_ssk/home/clock.dart';
-import 'package:login_ssk/home/location.dart';
+import 'package:login_ssk/history.dart';
+import 'package:login_ssk/model/clock.dart';
+import 'package:login_ssk/model/location.dart';
+import 'package:provider/provider.dart';
 
-class HomePage extends StatefulWidget {
+class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
 
-  @override
-  State<HomePage> createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,13 +20,29 @@ class _HomePageState extends State<HomePage> {
             Container(
               child: Column(
                 children: [
-                  Text('WELCOME',
-                  style: TextStyle(
-                    fontWeight: FontWeight.w800,
-                    fontSize: 35,
-                  ),),
-                  const SizedBox(height: 30),
-                  DigitalClock(),
+                  Text('Welcome',
+                    style: TextStyle(
+                      fontWeight: FontWeight.w800,
+                      fontSize: 35,
+                    ),),
+                  // const SizedBox(height: 30),
+                  Container(
+                    child: Consumer<Clock>(
+                      builder: (context, myClock, child) {
+                        return Column(
+                          children: [
+                            Center(
+                                child: myClock.DiGiTalClock()
+                            ),
+                            Text(myClock.getCounter(),
+                              style: const TextStyle(
+                                  fontSize: 35
+                              ),)
+                          ],
+                        );
+                      },
+                    ),
+                  ),
                   const SizedBox(height: 30),
                   CheckIn(),
                   const SizedBox(height:30),
@@ -42,7 +55,9 @@ class _HomePageState extends State<HomePage> {
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(15)),
                           color:Colors.grey,
-                          onPressed: (){},
+                          onPressed: (){
+                            Navigator.push(context, MaterialPageRoute(builder: (context)=> HisToRy()));
+                          },
                           child: Text(
                             'Lịch sử',
                             style: TextStyle(color: Colors.white),
@@ -67,3 +82,4 @@ class _HomePageState extends State<HomePage> {
     );
   }
 }
+
