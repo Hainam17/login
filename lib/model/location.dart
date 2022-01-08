@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_fonts/google_fonts.dart';
-class Location extends StatefulWidget with ChangeNotifier {
+class Location extends StatefulWidget{
   @override
   _LocationState createState() => _LocationState();
 }
@@ -18,7 +18,8 @@ class _LocationState extends State<Location> {
       getAddress(currentLoc.latitude,currentLoc.longitude);
     }
   }
-  initState (){
+  void initState (){
+    super.initState();
     getLocation();
   }
   getAddress(double longitude, double latitude) async {
@@ -29,7 +30,6 @@ class _LocationState extends State<Location> {
             newPlacemark.administrativeArea! +', '+
             newPlacemark.country!;
     });
-    super.initState();
   }
   @override
   Widget build(BuildContext context) {

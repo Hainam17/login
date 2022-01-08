@@ -4,17 +4,17 @@ import 'package:login_ssk/login/forgot_pass.dart';
 import 'package:login_ssk/login/signUp.dart';
 import '../app_path.dart';
 
-class LoginSceen extends StatefulWidget {
-  const LoginSceen({Key? key}) : super(key: key);
+class LoginScreen extends StatefulWidget {
+  const LoginScreen({Key? key}) : super(key: key);
 
   @override
-  _LoginSceenState createState() => _LoginSceenState();
+  _LoginScreenState createState() => _LoginScreenState();
 }
 
-class _LoginSceenState extends State<LoginSceen> {
+class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
-    var MyBoder =OutlineInputBorder(
+    var myBorder =OutlineInputBorder(
         borderRadius: new BorderRadius.only(
           bottomLeft: const Radius.circular(15),
           bottomRight: const Radius.circular(15),
@@ -42,7 +42,7 @@ class _LoginSceenState extends State<LoginSceen> {
                         children: <Widget>[
                           TextField(
                               decoration: InputDecoration(
-                                border: MyBoder,
+                                border: myBorder,
                                 labelText: 'Tên đăng nhập',
                               ),
                             ),
@@ -50,7 +50,7 @@ class _LoginSceenState extends State<LoginSceen> {
                           TextField(
                               obscureText: true,
                               decoration: InputDecoration(
-                                border: MyBoder,
+                                border: myBorder,
                                 labelText: 'Mật khẩu',
                               ),
                             ),

@@ -9,7 +9,7 @@ class Summarize extends StatelessWidget {
       backgroundColor: Colors.white,
       body: SafeArea(
         child: ListView(
-            padding: const EdgeInsets.only(left: 20, right: 20),
+            padding: const EdgeInsets.only(left: 25, right: 25),
             children: [
               const SizedBox(height: 30),
               Container(

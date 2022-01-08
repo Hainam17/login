@@ -1,8 +1,8 @@
-import 'dart:async';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:login_ssk/model/clock.dart';
+import 'package:login_ssk/model/counting_time.dart';
 import 'package:login_ssk/summarize.dart';
 import 'package:provider/provider.dart';
 
@@ -51,7 +51,7 @@ class _ConFirmCheckOutState extends State<ConFirmCheckOut> {
                             return Column(
                               children: [
                                 Center(
-                                    child: myClock.DiGiTalClock()
+                                    child: myClock.diGiTalClock()
                                 ),
                                 Text(myClock.getCounter(),
                                   style: const TextStyle(
@@ -72,15 +72,7 @@ class _ConFirmCheckOutState extends State<ConFirmCheckOut> {
                           ),
                             textAlign: TextAlign.center
                         ),
-                      // Container(
-                      //   padding: const EdgeInsets.all(35),
-                      //   color: Colors.blue[200],
-                      //   child: Consumer<CountingState>( //                    <--- Consumer
-                      //     builder: (context, myModel, child) {
-                      //       return Text('');
-                      //     },
-                      //   ),
-                      // ),
+                      Counting(),
                       const SizedBox(height: 50),
                       const Text(
                         'Bạn chắc chắn chưa ?',

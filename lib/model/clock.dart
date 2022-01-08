@@ -10,7 +10,7 @@ class Clock with ChangeNotifier {
 
   setCounter(String clock) => _clock = clock;
 
-  DiGiTalClock() {
+  diGiTalClock() {
     Timer.periodic(const Duration(seconds: 1), (timer){
       var formater = DateFormat('jms');
       _clock = formater.format(DateTime.now());

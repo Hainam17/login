@@ -20,7 +20,7 @@ class _SignUpState extends State<SignUp> {
   bool otpVisibility = false;
 
   String verificationID = "";
-  var MyBorder = const OutlineInputBorder(
+  var myBorder = const OutlineInputBorder(
       borderRadius: BorderRadius.only(
         bottomLeft: Radius.circular(15),
         bottomRight: Radius.circular(15),
@@ -43,7 +43,7 @@ class _SignUpState extends State<SignUp> {
                 controller: phoneController,
                 decoration: InputDecoration(
                   prefixIcon: const Icon(Icons.account_circle),
-                  border: MyBorder,
+                  border: myBorder,
                   hintText: 'Số điện thoại',
                 ),
                 maxLines: 10,
@@ -55,7 +55,7 @@ class _SignUpState extends State<SignUp> {
                 controller: otpController,
                 decoration: InputDecoration(
                   prefixIcon: const Icon(Icons.lock),
-                  border: MyBorder,
+                  border: myBorder,
                   hintText: 'OTP',
                   prefix: const Padding(
                     padding: EdgeInsets.all(4),

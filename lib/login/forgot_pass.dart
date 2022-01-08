@@ -11,7 +11,7 @@ class FoGot extends StatefulWidget {
 class _FoGotState extends State<FoGot> {
   @override
   Widget build(BuildContext context) {
-    var MyBoder =OutlineInputBorder(
+    var myBoder =OutlineInputBorder(
         borderRadius: new BorderRadius.only(
           bottomLeft: const Radius.circular(15),
           bottomRight: const Radius.circular(15),
@@ -62,7 +62,7 @@ class _FoGotState extends State<FoGot> {
                       padding: EdgeInsets.fromLTRB(15, 0, 15, 0),
                       child: TextField(
                         decoration: InputDecoration(
-                          border: MyBoder,
+                          border: myBoder,
                           labelText: 'Số điện thoại',
                         ),
                         keyboardType: TextInputType.number,
@@ -74,7 +74,7 @@ class _FoGotState extends State<FoGot> {
                       padding: EdgeInsets.fromLTRB(15, 15, 15, 0),
                       child: TextField(
                         decoration: InputDecoration(
-                          border: MyBoder,
+                          border: myBoder,
                           labelText: 'Mật khẩu mới',
                         ),
                       )),
@@ -82,7 +82,7 @@ class _FoGotState extends State<FoGot> {
                       padding: EdgeInsets.fromLTRB(15, 15, 15, 15),
                       child: TextField(
                         decoration: InputDecoration(
-                          border: MyBoder,
+                          border: myBoder,
                           labelText: 'Nhập lại mật khẩu',
                         ),
                       )

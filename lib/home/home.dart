@@ -32,7 +32,7 @@ class HomePage extends StatelessWidget {
                         return Column(
                           children: [
                             Center(
-                                child: myClock.DiGiTalClock()
+                                child: myClock.diGiTalClock()
                             ),
                             Text(myClock.getCounter(),
                               style: const TextStyle(

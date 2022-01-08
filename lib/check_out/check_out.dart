@@ -39,7 +39,7 @@ class _CheckOutState extends State<CheckOut> {
                         return Column(
                           children: [
                             Center(
-                                child: myClock.DiGiTalClock()
+                                child: myClock.diGiTalClock()
                             ),
                             Text(myClock.getCounter(),
                               style: const TextStyle(

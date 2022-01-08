@@ -38,7 +38,7 @@ class _ConFirmCheckInState extends State<ConFirmCheckIn> {
                     return Column(
                       children: [
                         Center(
-                            child: myClock.DiGiTalClock()
+                            child: myClock.diGiTalClock()
                         ),
                         Text(myClock.getCounter(),
                           style: const TextStyle(
