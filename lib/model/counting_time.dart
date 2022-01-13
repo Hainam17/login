@@ -12,8 +12,7 @@ class Counting extends StatefulWidget {
 
 class _CountingState extends State<Counting>{
   int seconds =0;
-  Duration duration = Duration();
-  Timer ? timer;
+  Duration duration = const Duration();
   addTime() async {
     final prefs = await SharedPreferences.getInstance();
     setState(() {
@@ -24,7 +23,7 @@ class _CountingState extends State<Counting>{
   }
   void initState (){
     super.initState();
-      timer = Timer.periodic(Duration(seconds: 1), (_){
+      Timer.periodic(const Duration(seconds: 1), (_){
         addTime();
       });
   }

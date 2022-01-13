@@ -10,10 +10,23 @@ class Location extends StatefulWidget{
 class _LocationState extends State<Location> {
   String? address;
   void getLocation() async {
+    bool serviceEnabled;
+    serviceEnabled = await Geolocator.isLocationServiceEnabled();
+    if (!serviceEnabled) {
+      return Future.error('Dịnh vụ định vị bị tắt');
+    }
     LocationPermission position = await Geolocator.checkPermission();
-    if (position == LocationPermission.denied ||
-        position == LocationPermission.deniedForever) {
-    } else {
+    if (position == LocationPermission.denied) {
+      position = await Geolocator.requestPermission();
+      if (position == LocationPermission.denied) {
+        return Future.error('Qyền vị trí bị từ chối');
+      }
+    }
+
+    if (position == LocationPermission.deniedForever) {
+      return Future.error(
+          'Quyền vị trí bị từ chối vĩnh viễn, chúng tôi không thể yêu cầu quyền');
+    }  else {
       Position currentLoc = await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.best);
       getAddress(currentLoc.latitude,currentLoc.longitude);
     }

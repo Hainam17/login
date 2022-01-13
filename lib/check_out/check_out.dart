@@ -51,7 +51,7 @@ class _CheckOutState extends State<CheckOut> {
                     ),
                   ),
                   const SizedBox(height: 30),
-                Container(
+                  Container(
                       height: 200,
                       width: double.infinity,
                       decoration: BoxDecoration(
@@ -75,7 +75,8 @@ class _CheckOutState extends State<CheckOut> {
                             color: Colors.white
                           ),
                           textAlign: TextAlign.center,
-                        ),const SizedBox(height: 20),
+                        ),
+                          const SizedBox(height: 20),
                           Counting(),
                         ]
                       ),

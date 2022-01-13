@@ -11,14 +11,6 @@ class FoGot extends StatefulWidget {
 class _FoGotState extends State<FoGot> {
   @override
   Widget build(BuildContext context) {
-    var myBoder =OutlineInputBorder(
-        borderRadius: new BorderRadius.only(
-          bottomLeft: const Radius.circular(15),
-          bottomRight: const Radius.circular(15),
-          topLeft: const Radius.circular(15),
-          topRight: const Radius.circular(15),
-        )
-    );
     return Scaffold(
       appBar: AppBar(
           title: Text(
@@ -58,42 +50,41 @@ class _FoGotState extends State<FoGot> {
               padding: const EdgeInsets.all(15),
               child: Column(
                 children: [
-                  Padding(
-                      padding: EdgeInsets.fromLTRB(15, 0, 15, 0),
-                      child: TextField(
+                  TextField(
                         decoration: InputDecoration(
-                          border: myBoder,
                           labelText: 'Số điện thoại',
+                          border: new OutlineInputBorder(
+                            borderRadius: new BorderRadius.circular(15.0),
+                            borderSide: new BorderSide(),
+                          ),
                         ),
                         keyboardType: TextInputType.number,
                         inputFormatters: <TextInputFormatter>[
                         ],
-                      )
-                  ),
-                  Padding(
-                      padding: EdgeInsets.fromLTRB(15, 15, 15, 0),
-                      child: TextField(
+                  ),const SizedBox(height: 20),
+                  TextField(
                         decoration: InputDecoration(
-                          border: myBoder,
                           labelText: 'Mật khẩu mới',
+                          border: new OutlineInputBorder(
+                            borderRadius: new BorderRadius.circular(15.0),
+                            borderSide: new BorderSide(),
+                          ),
                         ),
-                      )),
-                  Padding(
-                      padding: EdgeInsets.fromLTRB(15, 15, 15, 15),
-                      child: TextField(
+                      ),const SizedBox(height: 20),
+                      TextField(
                         decoration: InputDecoration(
-                          border: myBoder,
                           labelText: 'Nhập lại mật khẩu',
+                          border: new OutlineInputBorder(
+                            borderRadius: new BorderRadius.circular(15.0),
+                            borderSide: new BorderSide(),
+                          ),
                         ),
-                      )
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(15, 0, 15, 0),
-                    child: SizedBox(
+                      ),const SizedBox(height: 20),
+                    SizedBox(
                       width: double.infinity,
                       height: 56,
                       child: ElevatedButton(
-                        onPressed: onConfirm,
+                        onPressed: (){},
                         child:
                         Text("Xác nhận",
                           style: TextStyle(),
@@ -108,7 +99,6 @@ class _FoGotState extends State<FoGot> {
                   ),
                     )
                     )
-                  )
                 ],
               ),
             )
@@ -116,7 +106,5 @@ class _FoGotState extends State<FoGot> {
         ),
       ]),
     );
-  }
-  void onConfirm(){
   }
 }

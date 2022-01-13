@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:login_ssk/home/home.dart';
 import 'package:login_ssk/login/forgot_pass.dart';
@@ -10,18 +11,9 @@ class LoginScreen extends StatefulWidget {
   @override
   _LoginScreenState createState() => _LoginScreenState();
 }
-
 class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
-    var myBorder =OutlineInputBorder(
-        borderRadius: new BorderRadius.only(
-          bottomLeft: const Radius.circular(15),
-          bottomRight: const Radius.circular(15),
-          topLeft: const Radius.circular(15),
-          topRight: const Radius.circular(15),
-        )
-    );
     return Scaffold(
       body: SafeArea(
         child: ListView(
@@ -42,16 +34,20 @@ class _LoginScreenState extends State<LoginScreen> {
                         children: <Widget>[
                           TextField(
                               decoration: InputDecoration(
-                                border: myBorder,
                                 labelText: 'Tên đăng nhập',
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(15.0),
+                                ),
                               ),
                             ),
                           const SizedBox(height: 30),
                           TextField(
                               obscureText: true,
                               decoration: InputDecoration(
-                                border: myBorder,
                                 labelText: 'Mật khẩu',
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(15.0),
+                                ),
                               ),
                             ),
                           const SizedBox(height: 30),
@@ -106,7 +102,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                     },
                                     child: Text(
                                       'Đăng kí',
-                                    ))
+                                    )
+                                )
                               ],
                             ),
                           )
