@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:login_ssk/check_in/confirm_checkin.dart';
+import 'package:login_ssk/check_out/confirm_checkout.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 
 
@@ -52,65 +53,45 @@ class _QRViewExampleState extends State<QRViewExample> {
                         ),
                           textAlign: TextAlign.center,
                       ),
-                        MaterialButton(
-                          height: 45,
-                          minWidth: 65,
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(15)),
-                          color: Colors.blue,
-                          onPressed: ()=> Navigator.push(context, MaterialPageRoute(builder: (context)=>ConFirmCheckIn())),
-                          child: const Text(
-                            'OK',
-                            style: TextStyle(
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            MaterialButton(
+                              height: 45,
+                              minWidth: 65,
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(15)),
+                              color: Colors.blue,
+                              onPressed: ()=> Navigator.push(context, MaterialPageRoute(builder: (context)=>ConFirmCheckIn())),
+                              child: const Text(
+                                'Check In',
+                                style: TextStyle(
+                                ),
+                              ),
                             ),
-                          ),
-                        )
+                            MaterialButton(
+                              height: 45,
+                              minWidth: 65,
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(15)),
+                              color: Colors.blue,
+                              onPressed: ()=> Navigator.push(context, MaterialPageRoute(builder: (context)=>ConFirmCheckOut())),
+                              child: const Text(
+                                'Check Out',
+                                style: TextStyle(
+                                ),
+                              ),
+                            )
+                          ],
+                        ),
                      ]
                     )
-                  else
-                    const Text('Scan a code',
-                    style: TextStyle(
-                      fontSize: 10
-                    ),),
-                  // Row(
-                  //   mainAxisAlignment: MainAxisAlignment.center,
-                  //   crossAxisAlignment: CrossAxisAlignment.center,
-                  //   children:[
-                  //     Container(
-                  //       margin: const EdgeInsets.all(8),
-                  //       child: ElevatedButton(
-                  //           onPressed: () async {
-                  //             await controller?.toggleFlash();
-                  //             setState(() {});
-                  //           },
-                  //           child: FutureBuilder(
-                  //             future: controller?.getFlashStatus(),
-                  //             builder: (context, snapshot) {
-                  //               return Text('Flash: ${snapshot.data}');
-                  //             },
-                  //           )),
-                  //     ),
-                  //     Container(
-                  //       margin: const EdgeInsets.all(8),
-                  //       child: ElevatedButton(
-                  //           onPressed: () async {
-                  //             await controller?.flipCamera();
-                  //             setState(() {});
-                  //           },
-                  //           child: FutureBuilder(
-                  //             future: controller?.getCameraInfo(),
-                  //             builder: (context, snapshot) {
-                  //               if (snapshot.data != null) {
-                  //                 return Text(
-                  //                     'Camera ${describeEnum(snapshot.data!)}');
-                  //               } else {
-                  //                 return const Text('loading');
-                  //               }
-                  //             },
-                  //           )),
-                  //     )
-                  //   ],
-                  // ),
+                  // else
+                  //   const Text('Scan a code',
+                  //   style: TextStyle(
+                  //     fontSize: 10
+                  //   ),
+                  //   ),
                 ],
               ),
             ),
@@ -122,8 +103,8 @@ class _QRViewExampleState extends State<QRViewExample> {
 
   Widget _buildQrView(BuildContext context) {
     // For this example we check how width or tall the device is and change the scanArea and overlay accordingly.
-    var scanArea = (MediaQuery.of(context).size.width < 500 ||
-        MediaQuery.of(context).size.height < 500)
+    var scanArea = (MediaQuery.of(context).size.width < 400 ||
+        MediaQuery.of(context).size.height < 400)
         ? 250.0
         : 300.0;
     // To ensure the Scanner view is properly sizes after rotation

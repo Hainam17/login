@@ -8,7 +8,7 @@ class Location extends StatefulWidget{
 }
 
 class _LocationState extends State<Location> {
-  String? address;
+  String address ='loading';
   void getLocation() async {
     bool serviceEnabled;
     serviceEnabled = await Geolocator.isLocationServiceEnabled();

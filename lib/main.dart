@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
       ],
       child: MaterialApp(
           debugShowCheckedModeBanner: false,
-          home: CheckOut(),
+          home: LoginScreen(),
           color: Colors.white,
         // ),
       ),

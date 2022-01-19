@@ -15,8 +15,8 @@ class _CountingState extends State<Counting>{
   Duration duration = const Duration();
   addTime() async {
     final prefs = await SharedPreferences.getInstance();
+    seconds = (prefs.getInt('seconds') ?? 0)+1;
     setState(() {
-      seconds = (prefs.getInt('seconds') ?? 0)+1;
       prefs.setInt('seconds', seconds);
       duration = Duration(seconds:  seconds);
     });
