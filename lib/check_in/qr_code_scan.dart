@@ -5,6 +5,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:login_ssk/check_in/confirm_checkin.dart';
 import 'package:login_ssk/check_out/confirm_checkout.dart';
+import 'package:login_ssk/summarize.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 
 
@@ -36,7 +37,7 @@ class _QRViewExampleState extends State<QRViewExample> {
     return Scaffold(
       body: Column(
         children: <Widget>[
-          Expanded(flex: 4, child: _buildQrView(context)),
+          Expanded(flex: 5, child: _buildQrView(context)),
           Expanded(
             // flex: 1,
             child: FittedBox(
@@ -53,45 +54,42 @@ class _QRViewExampleState extends State<QRViewExample> {
                         ),
                           textAlign: TextAlign.center,
                       ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            MaterialButton(
-                              height: 45,
-                              minWidth: 65,
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(15)),
-                              color: Colors.blue,
-                              onPressed: ()=> Navigator.push(context, MaterialPageRoute(builder: (context)=>ConFirmCheckIn())),
-                              child: const Text(
-                                'Check In',
-                                style: TextStyle(
+                        Container(
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              MaterialButton(
+                                height: 55,
+                                minWidth: 75,
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(15)),
+                                color: Colors.blue,
+                                onPressed: ()=> Navigator.push(context, MaterialPageRoute(builder: (context)=>ConFirmCheckIn())),
+                                child: const Text(
+                                  'Check In',
+                                  style: TextStyle(
+                                  ),
                                 ),
                               ),
-                            ),
-                            MaterialButton(
-                              height: 45,
-                              minWidth: 65,
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(15)),
-                              color: Colors.blue,
-                              onPressed: ()=> Navigator.push(context, MaterialPageRoute(builder: (context)=>ConFirmCheckOut())),
-                              child: const Text(
-                                'Check Out',
-                                style: TextStyle(
+                              const SizedBox(width: 150),
+                              MaterialButton(
+                                height: 55,
+                                minWidth: 75,
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(15)),
+                                color: Colors.blue,
+                                onPressed: ()=> Navigator.push(context, MaterialPageRoute(builder: (context)=>Summarize())),
+                                child: const Text(
+                                  'Check Out',
+                                  style: TextStyle(
+                                  ),
                                 ),
-                              ),
-                            )
-                          ],
+                              )
+                            ],
+                          ),
                         ),
                      ]
                     )
-                  // else
-                  //   const Text('Scan a code',
-                  //   style: TextStyle(
-                  //     fontSize: 10
-                  //   ),
-                  //   ),
                 ],
               ),
             ),

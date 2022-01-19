@@ -1,9 +1,9 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:login_ssk/check_in/qr_code_scan.dart';
 import 'package:login_ssk/model/clock.dart';
 import 'package:login_ssk/model/counting_time.dart';
-import 'package:login_ssk/summarize.dart';
 import 'package:provider/provider.dart';
 
 class ConFirmCheckOut extends StatefulWidget {
@@ -72,7 +72,7 @@ class _ConFirmCheckOutState extends State<ConFirmCheckOut> {
                           ),
                             textAlign: TextAlign.center
                         ),
-                      Counting(),
+                      // Counting(),
                       const SizedBox(height: 50),
                       const Text(
                         'Bạn chắc chắn chưa ?',
@@ -95,7 +95,7 @@ class _ConFirmCheckOutState extends State<ConFirmCheckOut> {
                                 borderRadius: BorderRadius.circular(15)),
                             color:Colors.white,
                             onPressed: (){
-                              Navigator.push(context, MaterialPageRoute(builder: (context)=>Summarize()));
+                              Navigator.push(context, MaterialPageRoute(builder: (context)=>QRViewExample()));
                             },
                             child:const Text(
                               'Yes',
